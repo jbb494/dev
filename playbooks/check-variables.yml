@@ -1,0 +1,9 @@
+- hosts: localhost
+  tasks:
+    - name: Include main vars
+      ansible.builtin.include_vars:
+        file: vars.yml
+
+    - debug: msg="{{ username }}"
+    - debug: msg="{{ home }}"
+    - debug: msg="{{ config }}"

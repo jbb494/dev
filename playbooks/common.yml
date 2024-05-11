@@ -1,0 +1,14 @@
+- hosts: localhost
+  tasks:
+  - name: Common libraries
+    become: true
+    ansible.builtin.apt:
+      pkg:
+      - fzf
+      - ripgrep
+      - xclip
+      - jq
+      - tldr
+      - shutter
+      - alacritty
+      - tmux

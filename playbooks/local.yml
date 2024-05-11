@@ -1,0 +1,28 @@
+- hosts: localhost
+
+- name: Check env variables
+  ansible.builtin.import_playbook: check-variables.yml
+
+- name: Installing common libraries
+  ansible.builtin.import_playbook: common.yml
+
+- name: Installing required software
+  ansible.builtin.import_playbook: core.yml
+
+- name: Installing keyboard
+  ansible.builtin.import_playbook: keyboard.yml
+
+- name: Installing i3
+  ansible.builtin.import_playbook: i3.yml
+
+- name: Installing nvim
+  ansible.builtin.import_playbook: nvim.yml 
+
+- name: Installing zsh
+  ansible.builtin.import_playbook: zsh.yml 
+
+- name: Installing nerd fonts
+  ansible.builtin.import_playbook: nerd-fonts.yml 
+
+- name: Installing dot files
+  ansible.builtin.import_playbook: dotfiles.yml

@@ -1,0 +1,27 @@
+- hosts: localhost
+  tasks:
+    - name: Include main vars
+      ansible.builtin.include_vars:
+        file: vars.yml
+
+    - name: Copy symbols
+      become: true
+      ansible.builtin.copy:
+        src: "{{ dev }}/resources/xkb/symbols/"
+        dest: "/usr/share/X11/xkb/symbols/"
+
+    - name: Copy types
+      become: true
+      ansible.builtin.copy:
+        src: "{{ dev }}/resources/xkb/types/"
+        dest: "/usr/share/X11/xkb/types/"
+
+    - name: Overwrite default keyboard
+      become: true
+      ansible.builtin.copy:
+        src: "{{ dev }}/resources/xkb/keyboard"
+        dest: "/etc/default/keyboard"
+
+    - name: Setup keyboard
+      become: true
+      ansible.builtin.command: "{{ dev }}/commands/xkb.sh"

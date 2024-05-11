@@ -1,0 +1,12 @@
+xkb_types "capsnumber" {
+  type "CAPS_NUMBERS" {
+      modifiers = Shift + Lock;
+      map[None] = Level1;
+      map[Shift] = Level2;
+      map[Shift+Lock] = Level2; // Optional: Shift+Caps Lock could revert to uppercase letters or something else
+      map[Lock] = Level2; // Caps Lock alone switches to Level3 where numbers are defined
+      level_name[Level1] = "Base";
+      level_name[Level2] = "Shift";
+  };
+};
+

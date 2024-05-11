@@ -1,0 +1,25 @@
+- hosts: localhost
+  tasks:
+  - name: Include main vars
+    ansible.builtin.include_vars:
+      file: vars.yml
+
+  - name: Ensure zsh is the default shell
+    user:
+      name: "{{ username }}"
+      shell: "/usr/bin/zsh"
+    become: true
+
+  - name: Download zimfw
+    get_url:
+      url: https://raw.githubusercontent.com/zimfw/install/master/install.zsh
+      dest: /tmp/install_zimfw.sh
+
+  - name: Run zimfw script
+    command: sh /tmp/install_zimfw.sh --unattended
+    register: zimfw_result
+    failed_when: "'FAILED' in zimfw_result.stderr"
+
+  - name: Check default shell is zsh
+    become: true
+    ansible.builtin.command: chsh -s /usr/bin/zsh

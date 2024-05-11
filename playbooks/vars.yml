@@ -1,0 +1,6 @@
+username: "{{ lookup('ansible.builtin.env', 'USER') }}"
+home: "{{ lookup('ansible.builtin.env', 'HOME') }}"
+config: "{{ home }}/.config"
+data: "{{ home }}/.local/share"
+personal: "{{ home }}/personal"
+dev: "{{ personal }}/dev"

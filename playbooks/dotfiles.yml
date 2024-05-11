@@ -1,0 +1,23 @@
+- hosts: localhost
+  tasks:
+    - name: Include main vars
+      ansible.builtin.include_vars:
+        file: vars.yml
+
+    - name: Who am I
+      ansible.builtin.command: whoami
+      register: whoami
+
+    - debug: msg="{{ whoami.stdout }}"
+
+    - name: Cloning dotfiles
+      ansible.builtin.git:
+        repo: git@github.com:jbb494/.dotfiles.git
+        dest: "{{ home }}/.dotfiles"
+        version: main
+        update: false
+
+    - name: Install dotfiles
+      ansible.builtin.command:
+        chdir: "{{ home }}/.dotfiles"
+        cmd: "./ubuntu"
