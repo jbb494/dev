@@ -2,7 +2,7 @@
   tasks:
     - name: Include main vars
       ansible.builtin.include_vars:
-        file: vars.yml
+        file: ../vars.yml
 
     - name: "Install required software"
       become: true
@@ -14,7 +14,6 @@
           - git
           - docker
           - docker-compose
-          - python3-pip
           - stow
           - blueman
           - zsh
@@ -31,3 +30,16 @@
         name: "{{ username }}"
         groups: docker
         append: true
+
+    - name: Download mise
+      ansible.builtin.get_url:
+        url: https://mise.run
+        dest: /tmp/mise.sh
+
+    - name: Change mise.sh permisions
+      file: dest=/tmp/mise.sh mode=a+x
+
+    - name: Install mise
+      ansible.builtin.command: 
+        creates: "{{ bin }}/mise"
+        cmd: /tmp/mise.sh

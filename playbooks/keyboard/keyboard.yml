@@ -2,7 +2,7 @@
   tasks:
     - name: Include main vars
       ansible.builtin.include_vars:
-        file: vars.yml
+        file: ../vars.yml
 
     - name: Copy symbols
       become: true

@@ -3,7 +3,7 @@
 
   - name: Include main vars
     ansible.builtin.include_vars:
-      file: vars.yml
+      file: ../vars.yml
 
   - name: Clone neovim
     ansible.builtin.git:
@@ -25,9 +25,14 @@
       - lua5.1
       - liblua5.1-0-dev
 
-  - name: Neovim Make Install
-    become: true
-    ansible.builtin.command: sudo make install
+  - name: Neovim Make
+    ansible.builtin.command: make CMAKE_BUILD_TYPE=RelWithDebInfo
     args:
       chdir: "{{ home }}/neovim"
       creates: "{{ home }}/neovim/build"
+  
+  - name: Neovim Install
+    ansible.builtin.command: sudo make install
+    become: true
+    args:
+      chdir: "{{ home }}/neovim"

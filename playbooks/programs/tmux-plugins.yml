@@ -1,0 +1,13 @@
+- hosts: localhost
+  tasks:
+
+  - name: Include main vars
+    ansible.builtin.include_vars:
+      file: ../vars.yml
+
+  - name: Clone TPM
+    ansible.builtin.git:
+       repo: https://github.com/tmux-plugins/tpm
+       dest: "{{ data }}/tmux/plugins/tpm"
+       depth: 1
+       update: false

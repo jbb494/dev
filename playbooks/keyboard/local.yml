@@ -1,0 +1,7 @@
+- hosts: localhost
+
+- name: Installing keyboard
+  ansible.builtin.import_playbook: keyboard.yml
+
+- name: Installing nerd fonts
+  ansible.builtin.import_playbook: nerd-fonts.yml 

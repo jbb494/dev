@@ -1,0 +1,17 @@
+- hosts: localhost
+  tasks:
+    - name: Include main vars
+      ansible.builtin.include_vars:
+        file: ../vars.yml
+
+    - name: Installing node with mice
+      ansible.builtin.command:
+        cmd: mise use --global node@lts
+
+    - name: Npm installs
+      ansible.builtin.shell: "export PATH=\"{{ data }}/mise/shims:$PATH\"&& npm install --global {{ packages | join(' ') }}"
+      vars:
+        packages:
+          - pnpm
+          - bun
+          - "@fsouza/prettierd"

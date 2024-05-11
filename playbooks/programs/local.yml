@@ -1,0 +1,19 @@
+- hosts: localhost
+
+- name: Installing common libraries
+  ansible.builtin.import_playbook: common.yml
+
+- name: Installing required software
+  ansible.builtin.import_playbook: core.yml
+
+- name: Tmux plugins
+  ansible.builtin.import_playbook: tmux-plugins.yml
+
+- name: Installing i3
+  ansible.builtin.import_playbook: i3.yml
+
+- name: Installing nvim
+  ansible.builtin.import_playbook: nvim.yml 
+
+- name: Installing zsh
+  ansible.builtin.import_playbook: zsh-plugins.yml 

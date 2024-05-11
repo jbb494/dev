@@ -1,0 +1,4 @@
+- hosts: localhost
+
+- name: Install node Node
+  ansible.builtin.import_playbook: node.yml
