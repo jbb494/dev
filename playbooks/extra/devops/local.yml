@@ -1,0 +1,30 @@
+- hosts: localhost
+  tasks:
+    - name: Downloading skaffold
+      ansible.builtin.get_url:
+        url: https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64
+        dest: /tmp/skaffold
+        timeout: 300
+
+    - name: Install skaffold
+      become: true
+      ansible.builtin.command:
+        creates: /usr/local/bin/skaffold
+        cmd: sudo install /tmp/skaffold /usr/local/bin/
+
+    - name: Download kubectl version
+      ansible.builtin.uri:
+        url: https://storage.googleapis.com/kubernetes-release/release/stable.txt
+        return_content: true
+      register: kubectl_version
+    
+    - name: Download kubectl
+      ansible.builtin.get_url:
+        url: "https://dl.k8s.io/release/{{kubectl_version.content}}/bin/linux/amd64/kubectl"
+        dest: /tmp/kubectl
+
+    - name: Install kubectl
+      become: true
+      ansible.builtin.command:
+        creates: /usr/local/bin/kubectl
+        cmd: sudo install /tmp/kubectl /usr/local/bin/

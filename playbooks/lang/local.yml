@@ -2,3 +2,6 @@
 
 - name: Install node Node
   ansible.builtin.import_playbook: node.yml
+
+- name: Install node Go
+  ansible.builtin.import_playbook: go.yml

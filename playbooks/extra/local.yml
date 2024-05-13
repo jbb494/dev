@@ -1,0 +1,5 @@
+- hosts: localhost
+
+- name: Devops
+  ansible.builtin.import_playbook: devops/local.yml
+
