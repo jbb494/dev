@@ -12,6 +12,7 @@
       ansible.builtin.shell: "export PATH=\"{{ data }}/mise/shims:$PATH\"&& npm install --global {{ packages | join(' ') }}"
       vars:
         packages:
+          - typescript
           - pnpm
           - bun
           - "@fsouza/prettierd"
