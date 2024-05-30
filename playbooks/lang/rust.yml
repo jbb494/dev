@@ -1,0 +1,14 @@
+- hosts: localhost
+  tasks:
+    - name: Include main vars
+      ansible.builtin.include_vars:
+        file: ../vars.yml
+
+    - name: Get startup script
+      ansible.builtin.get_url:
+        url: https://sh.rustup.rs
+        dest: /tmp/rustup.sh
+
+    - name: Install script
+      ansible.builtin.command: 
+        cmd: sh /tmp/rustup.sh -y

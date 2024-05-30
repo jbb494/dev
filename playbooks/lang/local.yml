@@ -5,3 +5,6 @@
 
 - name: Install node Go
   ansible.builtin.import_playbook: go.yml
+
+- name: Install node Rust
+  ansible.builtin.import_playbook: rust.yml
