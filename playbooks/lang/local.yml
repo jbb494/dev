@@ -1,9 +1,12 @@
 - hosts: localhost
 
-- name: Install node Node
+- name: Install Node
   ansible.builtin.import_playbook: node.yml
 
-- name: Install node Go
+- name: Install Go
+  ansible.builtin.import_playbook: go.yml
+
+- name: Install Python 
   ansible.builtin.import_playbook: go.yml
 
 - name: Install node Rust

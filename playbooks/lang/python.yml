@@ -1,0 +1,15 @@
+- hosts: localhost
+  tasks:
+    - name: Include main vars
+      ansible.builtin.include_vars:
+        file: ../vars.yml
+
+    - name: Installing node with mice
+      ansible.builtin.command:
+        cmd: mise use --global python@3.11
+
+    - name: Pip installs
+      ansible.builtin.shell: "export PATH=\"{{ data }}/mise/shims:$PATH\"&& pip3 install {{ packages | join(' ') }}"
+      vars:
+        packages:
+          - ranger-fm
