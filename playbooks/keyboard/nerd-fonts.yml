@@ -5,18 +5,18 @@
       ansible.builtin.include_vars:
         file: ../vars.yml
 
-    - name: Download nerd font 0xProto
+    - name: Download nerd font JetBrainsMono
       ansible.builtin.get_url:
-        url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/0xProto.zip
-        dest: /tmp/0xProto Nerd Font Complete.zip
+        url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip
+        dest: /tmp/JetBrainsMono Nerd Font Complete.zip
 
     - name: Create fonts home directory if doesnt exist
       ansible.builtin.file:
         state: directory
-        path: "{{data}}/fonts/0xProto"
+        path: "{{data}}/fonts/JetBrainsMono"
 
     - name: Unzip and Install the font
       ansible.builtin.command: 
-        creates: "{{ data }}/fonts/0xProto"
-        cmd: /usr/bin/unzip -n '/tmp/0xProto Nerd Font Complete.zip' -d {{data}}/fonts/0xProto
-        creates: "{{data}}/fonts/0xProto/README.MD"
+        creates: "{{ data }}/fonts/JetBrainsMono"
+        cmd: /usr/bin/unzip -n '/tmp/JetBrainsMono Nerd Font Complete.zip' -d {{data}}/fonts/JetBrainsMono
+        creates: "{{data}}/fonts/JetBrainsMono/README.MD"
